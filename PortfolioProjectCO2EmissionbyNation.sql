@@ -27,7 +27,7 @@ From PortfolioProjectCO2Emission..FossilFuelByNation
 Where [solid fuel]<>0 
 Order by Country
 
---Looking at max solid fuel 
+--LOOKING AT MAX SOLID FUEL USED 
 
 Select Country, Total, MAX([solid fuel]) as HighestSolidFuel, MAX(([solid fuel]/Total))*100 as HighestPercentageofFossilFuelUsed
 From PortfolioProjectCO2Emission..FossilFuelByNation
@@ -44,7 +44,7 @@ From PortfolioProjectCO2Emission..FossilFuelByNation
 Where [Liquid fuel]<>0 
 Order by Country
 
---Looking at max liquid fuel 
+--LOOKING AT MAX LIQUID FUEL USED
 
 Select Country, Total, MAX([Liquid fuel]) as HighestLiquidFuel, MAX(([Liquid fuel]/Total))*100 as HighestPercentageofLiquidFuelUsed
 From PortfolioProjectCO2Emission..FossilFuelByNation
@@ -59,7 +59,7 @@ From PortfolioProjectCO2Emission..FossilFuelByNation
 Where [gas fuel]<>0 
 Order by Country
 
---Looking at max liquid fuel 
+--LOOKING AT THE HIGHEST PERCENTAGE OF GAS FUEL USED 
 
 Select country, Total, MAX([gas fuel]) as HighestGasFuel, MAX(([gas fuel]/Total))*100 as HighestPercentageofGasFuelUsed
 From PortfolioProjectCO2Emission..FossilFuelByNation
@@ -67,7 +67,7 @@ Where [gas fuel]<>0
 Group by country, Total
 Order by HighestPercentageofGasFuelUsed desc
 
---Trying to sum
+--TO SUM
 
 Select country, Total, SUM([gas fuel]) as TotalGasFuel
 From PortfolioProjectCO2Emission..FossilFuelByNation
@@ -75,7 +75,7 @@ From PortfolioProjectCO2Emission..FossilFuelByNation
 Group by country, Total
 Order by Country
 
---Looking at the highest Total fossil fuel
+--LOOKING AT THE HIGHEST TOTAL FUEL USED
 
 Select country, Total, MAX([gas fuel]) as TotalGasFuel
 From PortfolioProjectCO2Emission..FossilFuelByNation
