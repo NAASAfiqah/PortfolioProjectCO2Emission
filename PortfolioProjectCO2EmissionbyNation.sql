@@ -35,8 +35,6 @@ Where [solid fuel]<>0
 Group by Country, Total
 Order by HighestPercentageofFossilFuelUsed desc
 
-
-
 --To PERCENT LIQUID FUEL PER TOTAL
 
 Select Year, Country, Total,[Liquid fuel], ([Liquid fuel]/Total)*100 as PercentageofLiquidFuelUsed
@@ -66,6 +64,19 @@ From PortfolioProjectCO2Emission..FossilFuelByNation
 Where [gas fuel]<>0
 Group by country, Total
 Order by HighestPercentageofGasFuelUsed desc
+
+--Trying to Join PercentageofFossilFuelUsed, PercentageofLiquidFuelUsed and PercentageofGasFuelUsed
+
+Select FossilFuelByNation.Year,  FossilFuelByNation.Country, FossilFuelByNation.Total, 
+FossilFuelByNation.[Solid Fuel], ([solid fuel]/.FossilFuelByNation.Total)*100 PercentageofFossilFuelUsed,
+[Liquid Fuel].[Liquid Fuel],([Liquid fuel].[Liquid Fuel]/.FossilFuelByNation.Total)*100 as PercentageofLiquidFuelUsed,
+FossilFuelByNation.[Gas Fuel],  ([gas fuel]/FossilFuelByNation.Total)*100 as PercentageofGasFuelUsed 
+From PortfolioProjectCO2Emission..FossilFuelByNation
+	Join PortfolioProjectCO2Emission..[Liquid Fuel]
+	on ([solid fuel]/.FossilFuelByNation.Total)*100= ([Liquid fuel].[Liquid Fuel]/.FossilFuelByNation.Total)*100
+	and FossilFuelByNation.[Solid Fuel]= [Liquid Fuel].[Liquid Fuel]
+Where [solid fuel]<>0
+Order by Year
 
 --TO SUM
 
