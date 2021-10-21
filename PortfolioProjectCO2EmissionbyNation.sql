@@ -15,6 +15,13 @@ Select*
 From PortfolioProjectCO2Emission..FossilFuelByNation
 Order by Year
 
+--Searching for 2014
+
+Select*
+From PortfolioProjectCO2Emission..FossilFuelByNation
+Where Year like '%2014%'
+Order by Country
+
 --To PERCENTAGE OF SOLID FUEL PER TOTAL
 
 Select Year, Country, Total, [solid fuel], ([solid fuel]/Total) as PercentageofFossilFuelUsed
@@ -77,6 +84,18 @@ From PortfolioProjectCO2Emission..FossilFuelByNation
 	and FossilFuelByNation.[Solid Fuel]= [Liquid Fuel].[Liquid Fuel]
 Where [solid fuel]<>0
 Order by Year
+
+--Trying to Join PercentageofFossilFuelUsed, PercentageofLiquidFuelUsed and PercentageofGasFuelUsed selecting 2014
+
+Select FossilFuelByNation.Year,  FossilFuelByNation.Country, FossilFuelByNation.Total, 
+FossilFuelByNation.[Solid Fuel], ([solid fuel]/FossilFuelByNation.Total)*100 PercentageofFossilFuelUsed,
+[Liquid Fuel].[Liquid Fuel],([Liquid fuel].[Liquid Fuel]/FossilFuelByNation.Total)*100 as PercentageofLiquidFuelUsed,
+FossilFuelByNation.[Gas Fuel],  ([gas fuel]/FossilFuelByNation.Total)*100 as PercentageofGasFuelUsed 
+From PortfolioProjectCO2Emission..FossilFuelByNation
+	Join PortfolioProjectCO2Emission..[Liquid Fuel]
+	on ([solid fuel]/FossilFuelByNation.Total)*100= ([Liquid fuel].[Liquid Fuel]/FossilFuelByNation.Total)*100
+	and FossilFuelByNation.[Solid Fuel]= [Liquid Fuel].[Liquid Fuel]
+Where FossilFuelByNation.Year like '%2014%'
 
 --TO SUM
 
